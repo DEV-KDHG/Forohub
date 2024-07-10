@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/topicos")
+@RequestMapping("/forohub")
 public class TopicoController {
 
     @Autowired
@@ -52,7 +52,7 @@ public class TopicoController {
         DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(topico.getId(), topico.getTitulo(),
                 topico.getAutor(), topico.getMensaje(), topico.getCurso(), topico.getFechaCreacion());
 
-        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        URI url = uriComponentsBuilder.path("/forohub/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(url).body(datosRespuestaTopico);
     }
 
@@ -73,7 +73,7 @@ public class TopicoController {
         Topico topico = topicoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tópico no encontrado"));
 
-        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        URI url = uriComponentsBuilder.path("/forohub/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.ok(url.toString());
     }
 
